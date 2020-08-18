@@ -1,74 +1,70 @@
-// Using the UFO dataset provided in the form of an array of JavaScript objects, write code that appends a table to your web page and then adds new rows of data for each UFO sighting.
-// Make sure you have a column for datetime, city, state, country, shape, duration and comment.
-// Connection to data
-let tableData = data;
-// Select table body to fill with data
-let tablebody = d3.select('tbody');
-// Choose form for filtering data
-let UFOform = d3.select('.form-group');
-// Select the button for filtering data
-let UFObutton = d3.select('#filter-btn');
-// Use a date form in your HTML document and write JavaScript code that will listen for events and search through the date/time column to find rows that match user input.
-// Using multiple input tags and/or select dropdowns, write JavaScript code so the user can to set multiple filters and search for UFO sightings
-// Filter table
-UFObutton.on('click', runEnter);
+
+let TableData = data;
+
+let TableBody = d3.select('tbody');
+
+let UFOForm = d3.select('.form-group');
+
+let UFOClick = d3.select('#filter-btn');
+
+UFOClick.on('click', runEnter);
 function runEnter() {
     d3.event.preventDefault();
-// Select date between 1/1/2010 and 1/13/2010
-    let UFOdate = d3.select('#datetime');
-    let UFOfilteredDate = UFOdate.property('value');
-// Set filter city
-    let UFOcity = d3.select('#city');
-    let UFOfilteredCity = UFOcity.property('value');
-// Select state  
-    let UFOstate = d3.select('#state');
-    let UFOfilteredState = UFOstate.property('value');
-// Select country  
+
+    let UFODates = d3.select('#datetime');
+    let UFOFilterDates = UFOdate.property('value');
+
+    let UFOCity = d3.select('#city');
+    let UFOFilterCity = UFOcity.property('value');
+ 
+    let UFOState = d3.select('#state');
+    let UFOFilterState = UFOstate.property('value');
+
     let UFOcountry = d3.select('#country');
-    let UFOfilteredCountry = UFOcountry.property('value');
-// Select shape  
-    let UFOshape = d3.select('#shape');
-    let UFOfilteredShape = UFOshape.property('value');
-// Select table
-    let checker = false;
-    let filterTableData =tableData;
-// Filter date excluding blank
-    if (UFOfilteredDate !== ''){
-        filterTableData = filterTableData.filter(UFO => UFO.datetime === UFOfilteredDate);
-        checker = true;
+    let UFOFilterCountry = UFOcountry.property('value');
+ 
+    let UFOShape = d3.select('#shape');
+    let UFOFilteredShape = UFOshape.property('value');
+
+    let Checker = false;
+    let FilterTableData =TableData;
+
+    if (UFOFilterDates !== ''){
+        FilterTableData = FilterTableData.filter(UFO => UFO.datetime === UFOFilterDate);
+        Checker = true;
     };  
-    tablebody.html('');
-// Filter city excluding blank 
+    TableBody.html('');
+
     if (UFOfilteredCity !== ''){
-        filterTableData = filterTableData.filter(UFO => UFO.city === UFOfilteredCity);
+        filterTableData = FilterTableData.filter(UFO => UFO.city === UFOfilteredCity);
         checker = true;
     };
-    tablebody.html('');
-// Filter state excluding blank
+    TableBody.html('');
+
     if (UFOfilteredState !== ''){
-        filterTableData = filterTableData.filter(UFO => UFO.state === UFOfilteredState);
-        checker = true;
+        FilterTableData = FilterTableData.filter(UFO => UFO.state === UFOfilteredState);
+        Checker = true;
     };
-    tablebody.html('');
-// Filter country excluding blank
+    TableBody.html('');
+
     if (UFOfilteredCountry !== ''){
-        filterTableData = filterTableData.filter(UFO => UFO.country === UFOfilteredCountry);
-        checker = true;
+        FilterTableData = FilterTableData.filter(UFO => UFO.country === UFOFilterCountry);
+        Checker = true;
     };
-    tablebody.html('');
-// Filter shape excluding blank 
+    TableBody.html('');
+
     if (UFOfilteredShape !== ''){
-        filterTableData = filterTableData.filter(UFO => UFO.shape === UFOfilteredShape);
+        FilterTableData = FilterTableData.filter(UFO => UFO.shape === UFOFiltedShape);
         checker = true;
     };
-    tablebody.html('');
-// Fill table  
-    if (checker = true){
-        filterTableData.forEach((UFOfinalTable) => {
-            let UFOrow = tablebody.append('tr');
-            Object.entries(UFOfinalTable).forEach(([key, value]) => {
-              let UFOcell = UFOrow.append('td');
-              UFOcell.text(value);
+    TableBody.html('');
+ 
+    if (Checker = true){
+        FilterTableData.forEach((UFOFinalTable) => {
+            let UFORow = TableBody.append('tr');
+            Object.entries(UFOFinalTable).forEach(([key, value]) => {
+              let UFOCell = UFOrow.append('td');
+              UFOCell.text(value);
             });
           });
         };  
