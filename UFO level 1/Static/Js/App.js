@@ -1,46 +1,45 @@
 
-let tableData = data;
+let TableData = data;
 
-console.log(tableData);
+console.log(TableData);
 
-let tablebody = d3.select('tbody');
+let TableBody = d3.select('tbody');
 
-tableData.forEach(function(UFO) {
+TableData.forEach(function(UFO) {
     console.log(UFO);
 
-    let UFOrow = tablebody.append('tr');
+    let UFORow = TableBody.append('tr');
 
     Object.entries(UFO).forEach(function([key, value]) {
       console.log(key, value);
 
-      let UFOcell = UFOrow.append('td');
-      UFOcell.text(value);
+      let UFOCell = UFORow.append('td');
+      UFOCell.text(value);
     });
 });
 
 
-let UFObutton = d3.select('#filter-btn');
-UFObutton.on('click', function() {
-    tablebody.html('');
+let UFOClick = d3.select('#filter-btn');
+UFOClick.on('click', function() {
+    TableBody.html('');
 
-    let UFOdate = d3.select('#datetime');
+    let UFODates = d3.select('#datetime');
 
-    let UFOvalues = UFOdate.property('value');
+    let UFOValues = UFODates.property('value');
     console.log(UFOvalues);
 
-    let UFOfiltered = tableData.filter(UFO => UFO.datetime === UFOvalues);
-    console.log(UFOfiltered);
-    UFOfiltered.forEach(function(selections) {
+    let UFOFilter = TableData.filter(UFO => UFO.datetime === UFOValues);
+    console.log(UFOFilter);
+    UFOFilter.forEach(function(selections) {
     console.log(selections);
 
-    let UFOrow = tablebody.append('tr');
+    let UFORow = tablebody.append('tr');
 
     Object.entries(selections).forEach(function([key, value]) {
         console.log(key, value);
 
-        let UFOcell = UFOrow.append('td');
-        UFOcell.text(value);
+        let UFOCell = UFORow.append('td');
+        UFOCell.text(value);
     });
 });
 });
-
